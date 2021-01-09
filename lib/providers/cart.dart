@@ -63,6 +63,10 @@ class Cart with ChangeNotifier {
     notifyListeners();
   }
 
+  bool isNotEmpty() {
+    return _items.length > 0;
+  }
+
   void clear() {
     _items = {};
     notifyListeners();
