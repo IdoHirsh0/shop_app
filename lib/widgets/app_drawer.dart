@@ -8,7 +8,7 @@ class AppDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child: Column(
-        children: [
+        children: <Widget>[
           AppBar(
             title: Text('Hello Friend!'),
             automaticallyImplyLeading: false,
@@ -33,7 +33,7 @@ class AppDrawer extends StatelessWidget {
           Divider(),
           ListTile(
             leading: Icon(Icons.edit),
-            title: Text('Manage products'),
+            title: Text('Manage Products'),
             onTap: () {
               Navigator.of(context)
                   .pushReplacementNamed(UserProductsScreen.routeName);

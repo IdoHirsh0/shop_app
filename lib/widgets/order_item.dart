@@ -15,14 +15,14 @@ class OrderItem extends StatefulWidget {
 }
 
 class _OrderItemState extends State<OrderItem> {
-  bool _expanded = false;
+  var _expanded = false;
 
   @override
   Widget build(BuildContext context) {
     return Card(
       margin: EdgeInsets.all(10),
       child: Column(
-        children: [
+        children: <Widget>[
           ListTile(
             title: Text('\$${widget.order.amount}'),
             subtitle: Text(
@@ -39,48 +39,34 @@ class _OrderItemState extends State<OrderItem> {
           ),
           if (_expanded)
             Container(
-              padding: EdgeInsets.symmetric(
-                horizontal: 15,
-                vertical: 4,
-              ),
-              height: min(
-                widget.order.products.length * 20.0 + 10,
-                180.0,
-              ),
+              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 4),
+              height: min(widget.order.products.length * 20.0 + 10, 100),
               child: ListView(
                 children: widget.order.products
                     .map(
-                      (product) => Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            '${product.quantity}x',
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.grey,
-                            ),
+                      (prod) => Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Text(
+                                prod.title,
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                '${prod.quantity}x \$${prod.price}',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.grey,
+                                ),
+                              )
+                            ],
                           ),
-                          SizedBox(width: 10),
-                          Text(
-                            product.title,
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Spacer(),
-                          Text(
-                            '${product.price}\$',
-                            style: TextStyle(
-                              fontSize: 18,
-                            ),
-                          ),
-                        ],
-                      ),
                     )
                     .toList(),
               ),
-            ),
+            )
         ],
       ),
     );
